@@ -1,6 +1,7 @@
 import React from "react";
 import PostCreate from "./PostCreate";
-import { Header, Container } from "semantic-ui-react";
+import PostList from "./PostList";
+import { Header, Container, Divider } from "semantic-ui-react";
 
 
 const App = () => {
@@ -8,6 +9,9 @@ const App = () => {
     <Container text>
        <Header as='h1'>Create a Post!</Header>
       <PostCreate />
+      <Divider horizontal>Created Posts</Divider>
+      <Header as='h1'>Posts</Header>
+      <PostList/>
     </Container>
   );
 };
