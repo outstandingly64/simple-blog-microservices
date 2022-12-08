@@ -3,6 +3,7 @@ import axios from "axios";
 
 import { Card } from "semantic-ui-react";
 import CommentCreate from "./CommentCreate";
+import CommentList from "./CommentList";
 
 const PostList = () => {
   const [posts, setPosts] = useState({});
@@ -16,13 +17,17 @@ const PostList = () => {
     fetchPosts();
   }, []);
 
-  const renderedPosts = Object.values(posts).map((post) => {
+  const renderedPosts = Object.values(posts).map(post => {
+    
     return (
-      <React.Fragment key={post.id}>
-        <Card key={post.id}>
+      <React.Fragment key={post.randomID}>
+        <Card key={post.randomID}>
           <Card.Content header={post.title} />
           <Card.Content extra>
-            <CommentCreate postId={post.id}/>
+            <CommentList postId={post.randomID}/>
+          </Card.Content>
+          <Card.Content extra>
+            <CommentCreate postId={post.randomID}/>
           </Card.Content>
         </Card>
       </React.Fragment>
