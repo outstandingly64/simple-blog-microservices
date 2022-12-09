@@ -23,7 +23,7 @@ app.post('/posts', async (req, res) => {
         randomID, title
     };
 
-    //event
+    //blog post event
     await axios.post('http://localhost:4005/events', {
         type: 'PostCreated',
         data: {
@@ -33,6 +33,12 @@ app.post('/posts', async (req, res) => {
 
     // 201 indiciates we just CREATED a resource
     res.status(201).send(posts[randomID]);
+});
+
+app.post('/events', (req, res) => {
+    console.log('Event Received!', req.body.type);
+
+    res.send({});
 });
 
 app.listen(4000, () => {
