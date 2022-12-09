@@ -9,7 +9,7 @@ const PostList = () => {
   const [posts, setPosts] = useState({});
 
   const fetchPosts = async () => {
-    const res = await axios.get("http://localhost:4000/posts");
+    const res = await axios.get("http://localhost:4002/posts");
     setPosts(res.data);
   };
 
@@ -17,17 +17,18 @@ const PostList = () => {
     fetchPosts();
   }, []);
 
+  console.log(posts);
   const renderedPosts = Object.values(posts).map(post => {
     
     return (
-      <React.Fragment key={post.randomID}>
-        <Card key={post.randomID}>
+      <React.Fragment key={post.id}>
+        <Card key={post.id}>
           <Card.Content header={post.title} />
           <Card.Content extra>
-            <CommentList postId={post.randomID}/>
+            <CommentList comments={post.comments}/>
           </Card.Content>
           <Card.Content extra>
-            <CommentCreate postId={post.randomID}/>
+            <CommentCreate postId={post.id}/>
           </Card.Content>
         </Card>
       </React.Fragment>

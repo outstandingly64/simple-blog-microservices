@@ -16,23 +16,23 @@ app.get('/posts', (req, res) => {
 });
 
 app.post('/posts', async (req, res) => {
-    const randomID = randomBytes(4).toString('hex');
+    const id = randomBytes(4).toString('hex');
     const { title } = req.body;
 
-    posts[randomID] = {
-        randomID, title
+    posts[id] = {
+        id, title
     };
 
     //blog post event
     await axios.post('http://localhost:4005/events', {
         type: 'PostCreated',
         data: {
-            id: randomID, title
+            id: id, title
         }
     });
 
     // 201 indiciates we just CREATED a resource
-    res.status(201).send(posts[randomID]);
+    res.status(201).send(posts[id]);
 });
 
 app.post('/events', (req, res) => {
