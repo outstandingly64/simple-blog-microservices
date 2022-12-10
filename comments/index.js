@@ -21,7 +21,8 @@ app.post('/posts/:id/comments', async (req, res) => {
     // returns comments or undefined, therefore guard with: OR an empty array
     const comments = commentsByPostId[req.params.id] || [];
 
-    comments.push({ id: commentId, content});
+    // THIS is where the comment gets created
+    comments.push({ id: commentId, content, status: 'pending'});
     commentsByPostId[req.params.id] = comments;
 
     //blog comment event
@@ -30,7 +31,8 @@ app.post('/posts/:id/comments', async (req, res) => {
         data: {
             id: commentId,
             content, 
-            postId: req.params.id
+            postId: req.params.id,
+            status: 'pending'
         }
     });
 
